@@ -52,18 +52,49 @@ This software is designed to revolutionize the way handwritten notes, prescripti
 - **Wider Applicability**: While e-prescriptions are primarily focused on medication orders, this software can handle various handwritten documents, including handwritten notes and company logos. It's versatile and applicable in a broader range of scenarios.
 
 - **Increased Data Security**: The encryption of data into QR codes provides an additional layer of security beyond typical e-prescription methods, ensuring the confidentiality and integrity of patient information.
+It looks like you want to create a documentation section in Markdown. Here's an improved version of your documentation with better formatting:
 
-## Library and Dependencies
-1. Please Ensure you have installed the following
-  - 'pip install pillow'
-  - 'pip install flask'
-  - 'pip install pytesseract'
-  - tesseract [WINDOWS](https://tesseract-ocr.github.io/tessdoc/Installation.html)
+# Library and Dependencies
 
-## Features
-For now it will only upload and read the document (Encryption and Decryption needed) and save it into the uploads folder and will feature the text on the page 
+Please ensure you have installed the following Python libraries and dependencies:
 
-## Needed
-To Console LOG the new encrypted file and also be able to Decrpyt the file
-## Running
-'python QRgen.py'
+- To install Pillow:
+  ```
+  pip install pillow
+  ```
+
+- To install Flask:
+  ```
+  pip install flask
+  ```
+
+- To install Pytesseract:
+  ```
+  pip install pytesseract
+  ```
+
+- You also need to install Tesseract. For Windows, you can find installation instructions [here](https://tesseract-ocr.github.io/tessdoc/Installation.html).
+
+# Features
+
+For now, the application will:
+- Upload a document
+- Read the document
+- Save it into the "uploads" folder
+- Display the text on the page
+
+## To Do
+
+In the future, you may consider implementing the following features:
+- Encryption and Decryption of the uploaded files
+
+# Running
+
+To run the application, execute the following command in your terminal:
+
+```
+python QRgen.py
+```
+
+Make sure you have installed the required libraries and dependencies as mentioned above before running the application.
+```
