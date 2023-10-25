@@ -45,4 +45,25 @@ This software is designed to revolutionize the way handwritten notes, prescripti
 
 4. **Data Security**: The encrypted QR code ensures that your prescription and sensitive medical information remain confidential and secure.
 
-By using this software, you can join the wave of the future in document management and secure, paperless healthcare solutions. It offers numerous benefits, including enhanced accuracy, accessibility, and streamlined communication for both patients and healthcare providers.
+## Difference with e-Prescriptions
+
+- **Independence from EHRs**: Unlike traditional e-prescriptions that often rely on Electronic Health Records (EHR) systems, this software offers a standalone solution. It can work seamlessly with handwritten notes, prescriptions, and any other documents, eliminating the need for EHR integration.
+
+- **Wider Applicability**: While e-prescriptions are primarily focused on medication orders, this software can handle various handwritten documents, including handwritten notes and company logos. It's versatile and applicable in a broader range of scenarios.
+
+- **Increased Data Security**: The encryption of data into QR codes provides an additional layer of security beyond typical e-prescription methods, ensuring the confidentiality and integrity of patient information.
+
+## Library and Dependencies
+1. Please Ensure you have installed the following
+  - 'pip install pillow'
+  - 'pip install flask'
+  - 'pip install pytesseract'
+  - tesseract [WINDOWS](https://tesseract-ocr.github.io/tessdoc/Installation.html)
+
+## Features
+For now it will only upload and read the document (Encryption and Decryption needed) and save it into the uploads folder and will feature the text on the page 
+
+## Needed
+To Console LOG the new encrypted file and also be able to Decrpyt the file
+## Running
+'python QRgen.py'

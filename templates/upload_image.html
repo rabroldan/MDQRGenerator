@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Extraction</title>
+</head>
+<body>
+    <h1>Text Extraction</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".png, .jpg, .jpeg, .pdf">
+        <input type="submit" value="Extract Text">
+    </form>
+    <div id="result">
+        <!-- Display extracted text here -->
+    </div>
+    <script>
+        // JavaScript to update the page with the extracted text
+        document.querySelector("form").addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const response = await fetch("/", { method: "POST", body: formData });
+            const data = await response.json();
+            document.querySelector("#result").textContent = data.extracted_text;
+        });
+    </script>
+</body>
+</html>
