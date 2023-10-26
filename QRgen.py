@@ -31,14 +31,14 @@ def upload_image():
 
         if file:
 
+            #Saves the File into the uploads folder 
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+
             # Read the uploaded image
             img = Image.open(io.BytesIO(file.read()))
 
             # Use Tesseract to extract text from the image
             extracted_text = pytesseract.image_to_string(img)
-
-            #Saves the File into the uploads folder 
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
 
             return jsonify({"extracted_text": extracted_text})
 
