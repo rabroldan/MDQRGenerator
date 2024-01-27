@@ -1,11 +1,14 @@
 from flask import Flask, render_template, request, jsonify
 from PIL import Image
 import pytesseract
-import io
 import os
 import sys
+import qrcode
 
-VERSION = "0.1" # current version of the tool
+# Set the path to the Tesseract executable
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+
+VERSION = "0.1"  # current version of the tool
 
 app = Flask(__name__)
 
@@ -30,28 +33,44 @@ def upload_image():
             return jsonify({"Error": "No selected file"})
 
         if file:
+            # Save the File into the uploads folder
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+            file.save(file_path)
 
-            #Saves the File into the uploads folder 
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-
-            # Read the uploaded image
-            img = Image.open(io.BytesIO(file.read()))
+            # Read the uploaded image directly from the file path
+            img = Image.open(file_path)
 
             # Use Tesseract to extract text from the image
             extracted_text = pytesseract.image_to_string(img)
 
-            return jsonify({"extracted_text": extracted_text})
+            # Generate QR code from extracted text
+            qr = qrcode.QRCode(
+                version=1,
+                error_correction=qrcode.constants.ERROR_CORRECT_L,
+                box_size=10,
+                border=4,
+            )
+            qr.add_data(extracted_text)
+            qr.make(fit=True)
+
+            # Create a folder named "qr" if it doesn't exist within "uploads"
+            qr_folder = os.path.join( 'qr')
+            os.makedirs(qr_folder, exist_ok=True)
+
+            # Save the QR code image in the "qr" folder
+            qr_image_path = os.path.join(qr_folder, 'qr_code.png')
+            test = qr.make_image(fill_color="black", back_color="white").save(qr_image_path)
+           
+            return jsonify({"extracted_text": extracted_text, "qr_image_path": qr_image_path})
 
     return render_template("upload_image.html")
 
 if __name__ == "__main__":
-
     if len(sys.argv) > 1:
-  
-        if sys.argv[1] == '-h' or sys.argv[1] == '-help' or sys.argv[1] == '--help' or sys.argv[1] == '--h' :
+        if sys.argv[1] in ['-h', '-help', '--help', '--h']:
             # Display help message
             print("COMING SOON")
-        elif sys.argv[1] == '-v' or sys.argv[1] == '-version' or sys.argv[1] == '--version' or sys.argv[1] == '--v':
+        elif sys.argv[1] in ['-v', '-version', '--version', '--v']:
             # Display version
             print(VERSION)  # Replace with your actual version
     else:

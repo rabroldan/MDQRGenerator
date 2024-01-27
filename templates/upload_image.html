@@ -1,7 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Extraction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        #loading {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <h1>Text Extraction</h1>
@@ -9,16 +56,18 @@
         <input type="file" name="file" accept=".png, .jpg, .jpeg, .pdf">
         <input type="submit" value="Extract Text">
     </form>
+    <div id="loading">Extracting text...</div>
     <div id="result">
         <!-- Display extracted text here -->
     </div>
     <script>
-        // JavaScript to update the page with the extracted text
         document.querySelector("form").addEventListener("submit", async (event) => {
             event.preventDefault();
+            document.getElementById('loading').style.display = 'block';
             const formData = new FormData(event.target);
             const response = await fetch("/", { method: "POST", body: formData });
             const data = await response.json();
+            document.getElementById('loading').style.display = 'none';
             document.querySelector("#result").textContent = data.extracted_text;
         });
     </script>

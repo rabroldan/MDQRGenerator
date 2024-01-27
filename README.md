@@ -74,7 +74,7 @@ Please ensure you have installed the following Python libraries and dependencies
   ```
 
 - You also need to install Tesseract. For Windows, you can find installation instructions [here](https://tesseract-ocr.github.io/tessdoc/Installation.html).
-
+- Please Ensure that you change "pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'" to the proper path of your tesseract
 # Features
 
 For now, the application will:
