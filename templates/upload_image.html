@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,41 @@
             font-family: 'Arial', sans-serif;
             background-color: #f0f0f0;
             text-align: center;
-            margin: 50px;
+            margin: 0;
+            padding: 0;
+        }
+
+        #menu {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        #menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #menu li {
+            float: left;
+        }
+
+        #menu li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        #menu li a:hover {
+            background-color: #ddd;
+            color: black;
         }
 
         h1 {
             color: #333;
+            margin-top: 50px;
         }
 
         form {
@@ -36,7 +67,7 @@
             cursor: pointer;
         }
 
-        #result {
+        #text_result {
             margin-top: 20px;
             padding: 20px;
             background-color: #fff;
@@ -45,21 +76,84 @@
             display: inline-block;
         }
 
+        #qr_result {
+            margin-top: 20px;
+            display: none;
+        }
+
+        #qr_img {
+            width: 300px;
+            height: 300px;
+        }
+
+        #download_options {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .download_button {
+            padding: 10px 20px;
+            margin-top: 5px;
+            width: 180px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #err {
+            color: red;
+            display: none;
+        }
+
         #loading {
             display: none;
         }
     </style>
 </head>
+
+
 <body>
-    <h1>Text Extraction</h1>
+
+    <div id="menu">
+        <ul>
+            <li><a href="{{ url_for('upload_image') }}">Home</a></li>
+
+            <li><a href="{{ url_for('about') }}">About</a></li>
+
+            <li><a href="{{ url_for('difference') }}">Difference with e-Prescriptions</a></li>
+            <li><a href="{{ url_for('howto') }}">How to Use</a></li>
+
+        </ul>
+    </div>
+    <h1>QR CODE GENERATOR</h1>
+
     <form method="POST" enctype="multipart/form-data">
         <input type="file" name="file" accept=".png, .jpg, .jpeg, .pdf">
         <input type="submit" value="Extract Text">
     </form>
     <div id="loading">Extracting text...</div>
-    <div id="result">
-        <!-- Display extracted text here -->
+
+    <div id="text_result"> <!-- Display extracted text here --></div>
+    <div id="qr_result">
+        <!-- Display QR code of the extracted text here -->
+        <img id="qr_img" src="" alt="Qr-Code">
     </div>
+    <div id="download_options">
+        <a id="pdf_url" href="{{url_for('download_pdf')}}" download="file"> <button class="download_button">Download
+                PDF</button></a>
+        <a id="img_url" href="{{url_for('download_image')}}" download="file"> <button class="download_button">Download
+                Image</button></a>
+        <br>
+        <a id="text_url_txt" href="{{url_for('download_text')}}" download="file"> <button
+                class="download_button">Download Text (txt)</button></a>
+        <a id="text_url_pdf" href="{{url_for('download_text_pdf')}}" download="file"> <button
+                class="download_button">Download Text (pdf)</button></a>
+    </div>
+
+
+    <div id="err"> err101<!-- Display error message here --></div>
     <script>
         document.querySelector("form").addEventListener("submit", async (event) => {
             event.preventDefault();
@@ -68,8 +162,24 @@
             const response = await fetch("/", { method: "POST", body: formData });
             const data = await response.json();
             document.getElementById('loading').style.display = 'none';
-            document.querySelector("#result").textContent = data.extracted_text;
+            if (data.Error) {
+                if (data.message) {
+                    document.getElementById('err').textContent = data.message;
+                }
+                else {
+                    document.getElementById('err').textContent = 'Error: No file was selected to perform the operation. Please, select a file and try again.';
+                }
+                document.getElementById('err').style.display = 'block';
+            }
+            else {
+                document.getElementById('text_result').textContent = data.extracted_text;
+                document.getElementById('qr_result').style.display = 'block';
+                document.getElementById('download_options').style.display = 'block';
+                document.getElementById('qr_img').src = 'data:image/png;base64,' + data.qr_code_data;
+                document.getElementById('err').style.display = 'none';
+            }
         });
     </script>
 </body>
+
 </html>

@@ -1,0 +1,16 @@
+Seneca Polytechnic - PRJ666 Project
+Date of issue: 2024-04-08
+Patient Name: DOE, John Jin.
+Patient Address: 100 Main St. Toronto ON A1A Q2Z
+Patient Date of birth: 2024-04-08
+Clinician Name: SWAN, Duck Jane
+Clinician Address: 123 Queen Ave W, South York ON J5E R6C
+Clinician DEA Number: CD4861375
+Drug Name: Tylenol
+Drug Strength: 500 mg of acetaminophen
+Dosage Form: Tablets
+Quantity Prescribed: 30
+Direction for use: Three times daily for five days
+Number of refills: 2
+Signature of the prescriber: 
+Page 1/1

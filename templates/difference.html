@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Difference with e-Prescriptions</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            text-align: left;
+            margin: 0;
+            padding: 0px;
+        }
+
+        #menu {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        #menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #menu li {
+            float: left;
+        }
+
+        #menu li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        #menu li a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        h1 {
+            color: #333;
+            padding-left: 20px;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.5;
+            padding-left: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 40px;
+        }
+
+        ul li {
+            margin-bottom: 0px;
+        }
+
+
+
+        h2 {
+            padding-left: 20px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="menu">
+        <ul>
+            <li><a href="{{ url_for('upload_image') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('difference') }}">Difference with e-Prescriptions</a></li>
+            <li><a href="{{ url_for('howto') }}">How to Use</a></li>
+        </ul>
+    </div>
+
+    <h1>Difference with e-Prescriptions</h1>
+    <ul>
+        <li><strong>Independence from EHRs:</strong> Unlike traditional e-prescriptions that often rely on Electronic
+            Health Records (EHR) systems, this software offers a standalone solution. It can work seamlessly with
+            handwritten notes, prescriptions, and any other documents, eliminating the need for EHR integration.</li>
+        <li><strong>Wider Applicability:</strong> While e-prescriptions are primarily focused on medication orders, this
+            software can handle various handwritten documents, including handwritten notes and company logos. It's
+            versatile and applicable in a broader range of scenarios.</li>
+        <li><strong>Increased Data Security:</strong> The QR codes provide an additional layer of security beyond
+            typical e-prescription methods, ensuring the confidentiality and integrity of patient information.</li>
+    </ul>
+
+    <h2>Advantages:</h2>
+    <ul>
+        <li><strong>Environmental Benefits:</strong> By converting handwritten notes to digital QR codes, this software
+            promotes a paperless approach, which in turn is helping the environment.</li>
+        <li><strong>Security:</strong> Handwritten notes can be easily lost or misinterpreted. The QR code offers a
+            secure method of storing and transmitting sensitive information.</li>
+        <li><strong>Efficiency:</strong> This software simplifies the process of sharing prescriptions and other
+            handwritten documents, making it more convenient for both patients and healthcare providers.</li>
+        <li><strong>Accuracy:</strong> Handwritten prescriptions are often prone to errors due to unreadable
+            handwriting. The QR code format ensures that the information is accurately recorded and understood by
+            pharmacists, reducing medication errors.</li>
+        <li><strong>Accessibility:</strong> Patients can easily access their prescriptions and medical information via
+            their smartphones or tablets, making it more accessible and convenient for tracking their healthcare.</li>
+        <li><strong>Streamlined Communication:</strong> Healthcare providers and pharmacies can streamline their
+            communication with patients, easily sharing prescriptions and important documents digitally, which saves
+            time and resources.</li>
+    </ul>
+
+</body>
+
+</html>
