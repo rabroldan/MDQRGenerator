@@ -56,22 +56,35 @@ It looks like you want to create a documentation section in Markdown. Here's an 
 
 # Library and Dependencies
 
-Please ensure you have installed the following Python libraries and dependencies:
+a. To install Flask:
+   ```
+   pip install flask
+   ```
 
-- To install Pillow:
-  ```
-  pip install pillow
-  ```
+b. To install Pytesseract:
+   ```
+   pip install pytesseract
+   ```
 
-- To install Flask:
-  ```
-  pip install flask
-  ```
+c. To install fpdf2:
+   ```
+   pip install fpdf2
+   ```
 
-- To install Pytesseract:
-  ```
-  pip install pytesseract
-  ```
+d. To install PyPDF2:
+   ```
+   pip install PyPDF2
+   ```
+
+e. To install Pillow:
+   ```
+   pip install pillow
+   ```
+
+f. To install qrcode:
+   ```
+   pip install qrcode
+   ```
 
 - You also need to install Tesseract. For Windows, you can find installation instructions [here](https://tesseract-ocr.github.io/tessdoc/Installation.html).
 - Please Ensure that you change "pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'" to the proper path of your tesseract
