@@ -85,7 +85,7 @@ def difference():
     return render_template('difference.html')
 @app.route("/howto", methods=["GET", "POST"])
 def howto():
-    # Render the about.html template
+    # Render the howto.html template
     return render_template('howto.html')
 @app.route("/download_pdf")
 def download_pdf():
