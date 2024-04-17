@@ -1,4 +1,4 @@
-#  MDQRConverter - STILL IN PROGRESS
+#  MDQRConverter
 
 ## Overview
 
